@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd-start-doing-application
+  namespace: argocd
+spec:
+  project: default
+  sources:
+  - repoURL: https://github.com/veryshyperson/OctoProject.git
+    targetRevision: HEAD
+    ref: values
+  - repoURL: https://github.com/veryshyperson/OctoProject-GitOps.git
+    targetRevision: HEAD
+    path: apple-basket
+    helm:
+      valueFiles: 
+        - values.yaml
+  destination: 
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
