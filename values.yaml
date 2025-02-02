@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: ransperber/octoapp2
-  tag: c3e052c
+  tag: 98dcf6d
   pullPolicy: Always
 
 resources:
